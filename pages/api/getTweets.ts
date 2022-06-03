@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Tweet } from '../../typings'
 import {sanityClient} from '../../sanity'
-import {groq} from 'next-sanity'
+import { groq } from 'next-sanity'
 type Data = {
   tweets: Tweet[]
 }
@@ -19,5 +19,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const tweets:Tweet[] = await sanityClient.fetch(feedQuery) 
+  console.log(tweets);
+  
   res.status(200).json({ tweets })
 }
